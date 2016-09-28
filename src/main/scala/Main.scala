@@ -14,7 +14,8 @@ object Main {
     val spark = SparkSession.builder().master("local").getOrCreate()
     spark.experimental.extraStrategies = Seq(MyStrategy)
     val query = spark.catalog.listTables().filter(_.name == "five")
-    query.explain(true)
+    query.explain(extended = true)
+    spark.stop()
   }
 }
 
